@@ -52,7 +52,7 @@ defmodule PasswordManagerWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {PasswordManagerWeb.Layouts, :app}
+        layout: {PasswordManagerWeb.Layouts, :root}
 
       unquote(html_helpers())
     end
