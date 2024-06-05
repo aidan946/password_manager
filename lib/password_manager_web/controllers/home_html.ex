@@ -1,4 +1,4 @@
-defmodule PasswordManagerWeb.PageHTML do
+defmodule PasswordManagerWeb.HomeHTML do
   @moduledoc """
   This module contains pages rendered by PageController.
 
@@ -6,5 +6,5 @@ defmodule PasswordManagerWeb.PageHTML do
   """
   use PasswordManagerWeb, :html
 
-  embed_templates "page_html/*"
+  embed_templates "home_html/*"
 end

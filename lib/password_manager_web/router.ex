@@ -19,8 +19,6 @@ defmodule PasswordManagerWeb.Router do
 
   scope "/", PasswordManagerWeb do
     pipe_through :browser
-
-    get "/", WelcomeController, :welcome
   end
 
   # Other scopes may use custom stacks.
@@ -50,8 +48,7 @@ defmodule PasswordManagerWeb.Router do
   scope "/", PasswordManagerWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
-    get "/home", HomeController, :home
-
+    # get "/", WelcomeController, :welcome
     live_session :redirect_if_user_is_authenticated,
       on_mount: [{PasswordManagerWeb.UserAuth, :redirect_if_user_is_authenticated}] do
       live "/users/register", UserRegistrationLive, :new
@@ -66,6 +63,7 @@ defmodule PasswordManagerWeb.Router do
   scope "/", PasswordManagerWeb do
     pipe_through [:browser, :require_authenticated_user]
 
+    get "/", HomeController, :home
     live_session :require_authenticated_user,
       on_mount: [{PasswordManagerWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
