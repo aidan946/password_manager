@@ -6,7 +6,7 @@ defmodule PasswordManagerWeb.UserRegistrationLive do
 
   def render(assigns) do
     ~H"""
-    <div class="mx-auto max-w-sm">
+    <div class="mx-auto max-w-sm mt-8">
       <.header class="text-center">
         Register for an account
         <:subtitle>
