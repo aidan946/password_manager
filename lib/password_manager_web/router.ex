@@ -48,7 +48,8 @@ defmodule PasswordManagerWeb.Router do
   scope "/", PasswordManagerWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
-    # get "/", WelcomeController, :welcome
+    get "/", WelcomeController, :welcome
+
     live_session :redirect_if_user_is_authenticated,
       on_mount: [{PasswordManagerWeb.UserAuth, :redirect_if_user_is_authenticated}] do
       live "/users/register", UserRegistrationLive, :new
@@ -63,12 +64,17 @@ defmodule PasswordManagerWeb.Router do
   scope "/", PasswordManagerWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    get "/", HomeController, :home
     live_session :require_authenticated_user,
       on_mount: [{PasswordManagerWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
     end
+  end
+
+  scope "/dashboard", PasswordManagerWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/", HomeController, :home
   end
 
   scope "/", PasswordManagerWeb do
